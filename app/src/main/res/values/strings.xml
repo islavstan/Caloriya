@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Caloriya</string>
+    <string name="action_settings"></string>
+    <string name="tab_name1">мужчина</string>
+    <string name="tab_name2">женщина</string>
+    <string name="alert_dialog_title">Ваша цель</string>
+
+    <string-array name="lifestyle">
+        <item>малоактивный</item>
+        <item>лёгкая активность</item>
+        <item>средняя активность</item>
+        <item>высокая активность</item>
+    </string-array>
+
+    <string-array name="target">
+        <item>похудение</item>
+        <item>удержание веса</item>
+        <item>набор массы</item>
+    </string-array>
+</resources>
