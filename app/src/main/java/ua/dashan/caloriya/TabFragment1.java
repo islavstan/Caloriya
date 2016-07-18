@@ -32,8 +32,10 @@ public class TabFragment1 extends Fragment {
     private Snackbar s;
     private Button button;
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.tab_fragment_1, container, false);
         button=(Button)v.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +44,7 @@ public class TabFragment1 extends Fragment {
                // FragmentTransaction trans = getFragmentManager().beginTransaction();
                // trans.replace(R.id.root_frame, new SecondFragment());
                 Intent intent = new Intent(getActivity(),DetailMan.class);
+                intent.putExtra("target",target.getText().toString());
                 getActivity().startActivity(intent);
 
 
