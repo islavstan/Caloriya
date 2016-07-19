@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,25 +27,41 @@ import android.content.DialogInterface.OnClickListener;
 import android.widget.Toast;
 
 
-public class TabFragment1 extends Fragment {
+public class TabFragment1 extends Fragment implements  AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     private EditText target;
+    private EditText weight;
+    private EditText height;
+    private EditText age;
     private Snackbar s;
     private Button button;
-
+  // private int selected;
+    private String lifeStyle;
+private Intent intent;
 
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.tab_fragment_1, container, false);
+        weight = (EditText)v.findViewById(R.id.weight);
+        height = (EditText)v.findViewById(R.id.height);
+        age = (EditText)v.findViewById(R.id.age);
         button=(Button)v.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // FragmentTransaction trans = getFragmentManager().beginTransaction();
                // trans.replace(R.id.root_frame, new SecondFragment());
-                Intent intent = new Intent(getActivity(),DetailMan.class);
+                 intent = new Intent(getActivity(),DetailMan.class);
                 intent.putExtra("target",target.getText().toString());
+                intent.putExtra("weight",weight.getText().toString());
+                intent.putExtra("height",height.getText().toString());
+                intent.putExtra("age",age.getText().toString());
+                intent.putExtra("spinner",lifeStyle);
+
+
+                /*String value= et.getText().toString();
+                int finalValue=Integer.parseInt(value);*/
                 getActivity().startActivity(intent);
 
 
@@ -71,6 +88,17 @@ public class TabFragment1 extends Fragment {
                 android.R.layout.simple_spinner_item);
         lifeStyleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(lifeStyleAdapter);
+        spinner.setOnItemSelectedListener(this);
+        //в переменную selected передаём позицию выбранного значения
+        /* selected = spinner.getSelectedItemPosition();
+        if (selected==0){
+            lifeStyle="малоактивный";
+        }if(selected==1){
+            lifeStyle="лёгкая активность";}
+        if(selected==2){
+            lifeStyle="средняя активность";}
+        if(selected==3){
+            lifeStyle="высокая активность";}*/
         return v;
 
     }
@@ -86,5 +114,19 @@ public class TabFragment1 extends Fragment {
             ColorChangeInterface colorChangeInterface = (ColorChangeInterface) getActivity();
             colorChangeInterface.setToolbarAndTabColor(1);
     }
-}}
+}
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // Получаем выбранный объект
+        Object item = parent.getItemAtPosition(position);
+        lifeStyle = item.toString();
+        //selection.setText(item.toString());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}
 
