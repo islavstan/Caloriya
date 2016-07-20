@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -24,7 +25,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.content.DialogInterface.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Arrays;
 
 
 public class TabFragment1 extends Fragment implements  AdapterView.OnItemSelectedListener {
@@ -35,6 +39,10 @@ public class TabFragment1 extends Fragment implements  AdapterView.OnItemSelecte
     private EditText age;
     private Snackbar s;
     private Button button;
+    private TextView dannie;
+    private TextView ves;
+   
+
   // private int selected;
     private String lifeStyle;
 private Intent intent;
@@ -43,31 +51,81 @@ private Intent intent;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.tab_fragment_1, container, false);
+
+       /*  dannie = (TextView)v.findViewById(R.id.dannie);
+        ves = (TextView)v.findViewById(R.id.ves);
+        Typeface typeFace2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        ves.setTypeface(typeFace2);
+
+        Typeface typeFace = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        dannie.setTypeface(typeFace);*/
+
+
+
+
+
+
+
         weight = (EditText)v.findViewById(R.id.weight);
+
+       Typeface typeFace = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+        weight.setTypeface(typeFace);
+
         height = (EditText)v.findViewById(R.id.height);
+        Typeface typeFace2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+        height.setTypeface(typeFace2);
+
         age = (EditText)v.findViewById(R.id.age);
+        Typeface typeFace3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+        age.setTypeface(typeFace3);
+
         button=(Button)v.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+              //делаем проверку на пустоту полей
+
+
+
+                if(target.getText().toString().equals("")||weight.getText().toString().equals("")||height.getText().toString().equals("")||
+                        age.getText().toString().equals("")||lifeStyle.equals("")||weight.getText().toString().startsWith("0")
+                        ||height.getText().toString().startsWith("0")||age.getText().toString().startsWith("0")){
+                   s.make(v, "Что-то здесь не так(" , Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();}
+
+
+                  /*if (weight.getText().toString().length()>0){
+                      vesProverka = weight.getText().toString().substring(0,1);
+                      if(vesProverka.compareTo("0")==0){
+                    s.make(v, "Вес не может начинаться с 0" , Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }s.make(v, "Введите вес" , Snackbar.LENGTH_LONG)
+                              .setAction("Action", null).show();}*/
+
+
+
+                else{
+
                // FragmentTransaction trans = getFragmentManager().beginTransaction();
                // trans.replace(R.id.root_frame, new SecondFragment());
+
                  intent = new Intent(getActivity(),DetailMan.class);
                 intent.putExtra("target",target.getText().toString());
                 intent.putExtra("weight",weight.getText().toString());
                 intent.putExtra("height",height.getText().toString());
                 intent.putExtra("age",age.getText().toString());
                 intent.putExtra("spinner",lifeStyle);
+                getActivity().startActivity(intent);}
 
-
-                /*String value= et.getText().toString();
+/*String value= et.getText().toString();
                 int finalValue=Integer.parseInt(value);*/
-                getActivity().startActivity(intent);
-
-
             }
         });
         target=(EditText)v.findViewById(R.id.target);
+        Typeface typeFace4= Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+        target.setTypeface(typeFace4);
         //отключает появление клавиатуры на edittext
         target.setInputType(InputType.TYPE_NULL);
         target.requestFocus();
@@ -84,10 +142,17 @@ private Intent intent;
         });
         //заполняем выподающий список данными
         spinner =(Spinner)v.findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> lifeStyleAdapter =  ArrayAdapter.createFromResource(getActivity(),R.array.lifestyle,
+
+      /*  ArrayAdapter<CharSequence> lifeStyleAdapter =  ArrayAdapter.createFromResource(getActivity(),R.array.lifestyle,
                 android.R.layout.simple_spinner_item);
         lifeStyleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(lifeStyleAdapter);
+        spinner.setAdapter(lifeStyleAdapter);*/
+        MySpinnerAdapter adapter = new MySpinnerAdapter(
+                getContext(),
+                android.R.layout.simple_spinner_item,
+                Arrays.asList(getResources().getStringArray(R.array.lifestyle))
+        );spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(this);
         //в переменную selected передаём позицию выбранного значения
         /* selected = spinner.getSelectedItemPosition();
