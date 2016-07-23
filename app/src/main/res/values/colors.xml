@@ -6,4 +6,7 @@
     <color name="tab1">#558af2</color>
     <color name="tab2">#e194db</color>
     <color name="text">#ffffff</color>
+
+    <color name="back">#EEEEEE</color>
+    <color name="dannie">#9E9E9E</color>
 </resources>

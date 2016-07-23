@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.content.DialogInterface.OnClickListener;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class TabFragment1 extends Fragment implements  AdapterView.OnItemSelecte
     private Button button;
     private TextView dannie;
     private TextView ves;
-   
+
 
   // private int selected;
     private String lifeStyle;
@@ -51,10 +52,13 @@ private Intent intent;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.tab_fragment_1, container, false);
-
-       /*  dannie = (TextView)v.findViewById(R.id.dannie);
+      /*  ImageView image = (ImageView)v.findViewById(R.id.image);
+        image.setImageResource(R.drawable.wei);*/
+         //dannie = (TextView)v.findViewById(R.id.dannie);
         ves = (TextView)v.findViewById(R.id.ves);
-        Typeface typeFace2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+      /* ves.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.scale, 0, 0, 0);*/
+       /* Typeface typeFace2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         ves.setTypeface(typeFace2);
 
         Typeface typeFace = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");

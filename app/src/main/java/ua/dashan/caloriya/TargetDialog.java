@@ -36,7 +36,7 @@ public class TargetDialog extends DialogFragment {
                 //здесь передаём edittext наш выбор
                 editText.setText(targets[which].toString());
 
-                s.make(v, "Вы выбрали "+ editText.getText().toString() , Snackbar.LENGTH_LONG)
+                s.make(v, "Вы выбрали "+ editText.getText().toString() , Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
 
