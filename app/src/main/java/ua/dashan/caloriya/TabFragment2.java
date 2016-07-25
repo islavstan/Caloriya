@@ -13,7 +13,7 @@ public class TabFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.tab_fragment_2, container, false);
     }
-    @Override
+  /*  @Override
     //метод для смены цвета таба, здесь передаём значение 2 в MainActivity, там есть метод который принимает эту двойку
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -22,6 +22,6 @@ public class TabFragment2 extends Fragment {
             ColorChangeInterface colorChangeInterface = (ColorChangeInterface) getActivity();
             colorChangeInterface.setToolbarAndTabColor(2);
         }
-    }
+    }*/
 }
 

@@ -174,7 +174,7 @@ private Intent intent;
 
 
 
-    @Override
+/*    @Override
     //метод для смены цвета таба, здесь передаём значение 1 в MainActivity, там есть метод который принимает эту еденицу
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -183,7 +183,7 @@ private Intent intent;
             ColorChangeInterface colorChangeInterface = (ColorChangeInterface) getActivity();
             colorChangeInterface.setToolbarAndTabColor(1);
     }
-}
+}*/
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

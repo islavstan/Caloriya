@@ -9,7 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements ColorChangeInterface {
+public class MainActivity extends AppCompatActivity  {
+    /*implements ColorChangeInterface*/
     TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements ColorChangeInterf
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   /* @Override
+   метод для смены цвета тулбара
     public void setToolbarAndTabColor(int position) {
         //метод для смены цвета таба
         if(position==1)
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements ColorChangeInterf
 
 
         }
-    }
+    }*/
 
 }
 
