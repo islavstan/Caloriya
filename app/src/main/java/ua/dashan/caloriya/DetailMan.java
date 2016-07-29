@@ -276,9 +276,9 @@ public class DetailMan extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        GMailSender sender = new GMailSender("stsndrd@gmail.com",
-                                "stas1111");
-                        sender.sendMail("Hello from JavaMail", "Даша дурочка",
+                        GMailSender sender = new GMailSender("email",
+                                "password");
+                        sender.sendMail("Hello from JavaMail", "Даша",
                                 "stsndrd@gmail.com", "islavstan@gmail.com");
                     } catch (Exception e) {
                         Log.e("SendMail", e.getMessage(), e);
