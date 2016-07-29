@@ -39,8 +39,17 @@ public class DetailMan extends AppCompatActivity {
     private TextView fat;
     private TextView carbohydrate;
     Snackbar menu;
+    private Intent intent;
+    private static String allInfo;
 
-//private TextView textView7;
+    public static String getAllInfo() {
+        return allInfo;
+    }
+
+    public static void setAllInfo(String allInfo) {
+        DetailMan.allInfo = allInfo;
+    }
+    //private TextView textView7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +91,10 @@ public class DetailMan extends AppCompatActivity {
         String fAge = intent.getStringExtra("age");
         int age =Integer.parseInt(fAge);
         String fSpinner = intent.getStringExtra("spinner");
+
+        Intent intent1 =new Intent(DetailMan.this,DetailExercise.class);
+        intent.putExtra("target",fTarget);
+         startActivity(intent);
 
         int formula = (int) ((9.99*weight)+(6.25*height)-(4.92*age)+5);
 
@@ -160,7 +173,18 @@ public class DetailMan extends AppCompatActivity {
             ft.commit();
         }
 
+        allInfo = textView.getText().toString()+" Для достижения Вашей цели рекомендуем: " +belki.getText().toString()+
+                fat.getText().toString()+carbohydrate.getText().toString();
 
+       // intent = new Intent(DetailMan.this,GMailSender.class);
+       // intent.putExtra("allDannie",allDannie);
+
+       /* //передаём всю инфу в CustomDialogFragment чтобы потом отправить всё по почте
+        Bundle bundle =new Bundle();
+        bundle.putString("allDannie",allDannie);
+        CustomDialogFragment dialogFragment =new CustomDialogFragment();
+        dialogFragment.setArguments(bundle);
+*/
 
 
          /*String value= et.getText().toString();
@@ -175,8 +199,19 @@ public class DetailMan extends AppCompatActivity {
 
 
     }
+  /*  public static CustomDialogFragment newInstance(String f) {
+        CustomDialogFragment d = new CustomDialogFragment();
+
+        Bundle args = new Bundle();
+        args.putString("allDannie", f);
+        d.setArguments(args);
+
+        return d;
+    }*/
+
     //добавляем элементы в список
     public List<Exercise> getSetExerciseList () {
+
         List<Exercise> listAux = new ArrayList<Exercise>();
         if (fTarget.equals("похудение")) {
             String[] name = {"Вода", "Прыжки на скакалке","Сковорода"};
@@ -233,6 +268,7 @@ public class DetailMan extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } if(id == R.id.send){
+
            new CustomDialogFragment().show(getSupportFragmentManager(),
                     "login");
         /*   new Thread(new Runnable() {

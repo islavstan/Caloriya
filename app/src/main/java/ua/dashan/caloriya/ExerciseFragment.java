@@ -1,5 +1,6 @@
 package ua.dashan.caloriya;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -62,7 +63,10 @@ public class ExerciseFragment extends Fragment implements RecyclerViewOnClickLis
     @Override
     //обработка нажатия
     public void OnclickListener(View view, int position) {
-        s.make(view, "Вы выбрали "+ position , Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
+       /* s.make(view, "Вы выбрали "+ position , Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();*/
+        Intent intent=new Intent(getActivity(),DetailExercise.class);
+        intent.putExtra("position",position);
+        getActivity().startActivity(intent);
     }
 }
