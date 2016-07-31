@@ -67,6 +67,7 @@ public class ExerciseFragment extends Fragment implements RecyclerViewOnClickLis
                 .setAction("Action", null).show();*/
         Intent intent=new Intent(getActivity(),DetailExercise.class);
         intent.putExtra("position",position);
+
         getActivity().startActivity(intent);
     }
 }

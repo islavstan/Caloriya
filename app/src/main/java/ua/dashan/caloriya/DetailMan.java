@@ -21,11 +21,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ua.dashan.caloriya.Chart.Chart;
 
 public class DetailMan extends AppCompatActivity {
     private String maloaktiv="малоактивный";
@@ -34,13 +37,29 @@ public class DetailMan extends AppCompatActivity {
     private String visokaya_aktiv="высокая активность";
     private  int form2;
     private  int form3;
-    private  String fTarget;
-    private TextView belki;
+    private static String fTarget;
+    private  TextView belki;
     private TextView fat;
     private TextView carbohydrate;
     Snackbar menu;
     private Intent intent;
     private static String allInfo;
+    private static int belki1;
+    private static int carbohydrate1;
+    private static int fat1;
+
+    public static int getBelki1() {
+        return belki1;
+    }
+
+    public static int getFat1() {
+        return fat1;
+    }
+
+    public static int getCarbohydrate1() {
+        return carbohydrate1;
+    }
+    //private TextView textView7;
 
     public static String getAllInfo() {
         return allInfo;
@@ -49,8 +68,10 @@ public class DetailMan extends AppCompatActivity {
     public static void setAllInfo(String allInfo) {
         DetailMan.allInfo = allInfo;
     }
-    //private TextView textView7;
 
+    public static String getfTarget() {
+        return fTarget;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,9 +82,13 @@ public class DetailMan extends AppCompatActivity {
         //здесь всё относится к ToolBar
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setTitle("Детали");
+        //стрелка назад
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //скрываем системный тулбар
+        getSupportActionBar().setTitle(null);
+       // getSupportActionBar().setDisplayShowHomeEnabled(false);
+      //  this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       toolbar.setTitle("Расчёт КБЖУ");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +117,9 @@ public class DetailMan extends AppCompatActivity {
         int age =Integer.parseInt(fAge);
         String fSpinner = intent.getStringExtra("spinner");
 
-        Intent intent1 =new Intent(DetailMan.this,DetailExercise.class);
+        /*Intent intent1 =new Intent(DetailMan.this,DetailExercise.class);
         intent.putExtra("target",fTarget);
-         startActivity(intent);
+         startActivity(intent);*/
 
         int formula = (int) ((9.99*weight)+(6.25*height)-(4.92*age)+5);
 
@@ -114,16 +139,16 @@ public class DetailMan extends AppCompatActivity {
         if(fTarget.equals("похудение")){
             form3=form2-(form2/100*15);
             textView.setText("Вам нужно потреблять "+form3+" каллорий в день.");
-            int belki1 = (int) (form3*0.3)/4;
+             belki1 = (int) (form3*0.3)/4;
             int belki2 = (int) (form3*0.35)/4;
             belki.setText(Html.fromHtml("<b>Белки</b> (нижний предел) = "+belki1+"г. "+"<b>Белки</b> (верхний предел) = "+belki2+"г. "));
 
 
-            int fat1 = (int) (form3*0.15)/9;
+             fat1 = (int) (form3*0.15)/9;
             int fat2 = (int) (form3*0.20)/9;
             fat.setText(Html.fromHtml("<b>Жиры</b> (нижний предел) = "+fat1+"г. "+"<b>Жиры</b> (верхний предел) = "+fat2+"г. "));
 
-            int carbohydrate1 = (int) (form3*0.45)/4;
+             carbohydrate1 = (int) (form3*0.45)/4;
             int carbohydrate2 = (int) (form3*0.50)/4;
             carbohydrate.setText(Html.fromHtml("<b>Углеводы</b> (нижний предел) = "+carbohydrate1+"г. "+"<b>Углеводы</b> (верхний предел) = "+carbohydrate2+"г. "));
 
@@ -131,16 +156,16 @@ public class DetailMan extends AppCompatActivity {
 
         } if(fTarget.equals("удержание веса")){
             textView.setText("Вам нужно потреблять "+form2+" каллорий в день.");
-            int belki1 = (int) (form2*0.3)/4;
+             belki1 = (int) (form2*0.3)/4;
             int belki2 = (int) (form2*0.35)/4;
             belki.setText(Html.fromHtml("<b>Белки</b> (нижний предел) = "+belki1+"г. "+"<b>Белки</b> (верхний предел) = "+belki2+"г. "));
 
 
-            int fat1 = (int) (form2*0.15)/9;
+             fat1 = (int) (form2*0.15)/9;
             int fat2 = (int) (form2*0.20)/9;
             fat.setText(Html.fromHtml("<b>Жиры</b> (нижний предел) = "+fat1+"г. "+"<b>Жиры</b> (верхний предел) = "+fat2+"г. "));
 
-            int carbohydrate1 = (int) (form2*0.45)/4;
+             carbohydrate1 = (int) (form2*0.45)/4;
             int carbohydrate2 = (int) (form2*0.50)/4;
             carbohydrate.setText(Html.fromHtml("<b>Углеводы</b> (нижний предел) = "+carbohydrate1+"г. "+"<b>Углеводы</b> (верхний предел) = "+carbohydrate2+"г. "));
 
@@ -148,15 +173,15 @@ public class DetailMan extends AppCompatActivity {
         }if(fTarget.equals("набор массы")){
             form3=form2+(form2/100*15);
             textView.setText("Вам нужно потреблять "+form3+" каллорий в день.");
-            int belki1 = (int) (form3*0.3)/4;
+             belki1 = (int) (form3*0.3)/4;
             int belki2 = (int) (form3*0.35)/4;
             belki.setText(Html.fromHtml("<b>Белки</b> (нижний предел) = "+belki1+"г. "+"<b>Белки</b> (верхний предел) = "+belki2+"г. "));
 
-            int fat1 = (int) (form3*0.15)/9;
+             fat1 = (int) (form3*0.15)/9;
             int fat2 = (int) (form3*0.20)/9;
             fat.setText(Html.fromHtml("<b>Жиры</b> (нижний предел) = "+fat1+"г. "+"<b>Жиры</b> (верхний предел) = "+fat2+"г. "));
 
-            int carbohydrate1 = (int) (form3*0.45)/4;
+             carbohydrate1 = (int) (form3*0.45)/4;
             int carbohydrate2 = (int) (form3*0.50)/4;
             carbohydrate.setText(Html.fromHtml("<b>Углеводы</b> (нижний предел) = "+carbohydrate1+"г. "+"<b>Углеводы</b> (верхний предел) = "+carbohydrate2+"г. "));
 
@@ -210,7 +235,7 @@ public class DetailMan extends AppCompatActivity {
     }*/
 
     //добавляем элементы в список
-    public List<Exercise> getSetExerciseList () {
+    public static List<Exercise> getSetExerciseList () {
 
         List<Exercise> listAux = new ArrayList<Exercise>();
         if (fTarget.equals("похудение")) {
@@ -251,6 +276,9 @@ public class DetailMan extends AppCompatActivity {
 
        return (listAux);
     }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -265,12 +293,22 @@ public class DetailMan extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        } if(id == R.id.send){
+        }*/ if(id == R.id.send){
 
            new CustomDialogFragment().show(getSupportFragmentManager(),
-                    "login");
+                    "login");}
+
+        if(id == R.id.chart){
+            Intent intent = new Intent(DetailMan.this, Chart.class);
+
+            startActivity(intent);}
+
+
+
+
+
         /*   new Thread(new Runnable() {
 
                 @Override
@@ -288,7 +326,7 @@ public class DetailMan extends AppCompatActivity {
             }).start();
 
 */
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

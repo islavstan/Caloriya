@@ -2,15 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".DetailMan">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+
     <item
         android:id="@+id/send"
         android:orderInCategory="100"
         android:title="@string/send"
         android:icon="@drawable/ic_email_white_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/chart"
+        android:orderInCategory="100"
+        android:title="@string/send"
+        android:icon="@drawable/ic_timeline_white_24dp"
         app:showAsAction="always"/>
 </menu>

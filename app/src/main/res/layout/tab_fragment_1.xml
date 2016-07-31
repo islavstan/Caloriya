@@ -214,9 +214,10 @@
 
 
             <Button
-                android:textColor="#424242"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
-                android:background="@null"
+                android:padding="4dp"
+                android:background="#3F51B5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

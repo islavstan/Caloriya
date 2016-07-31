@@ -29,4 +29,8 @@ dependencies {
     compile files('activation.jar')
     compile files('additionnal.jar')
     compile files('mail.jar')
+    compile 'com.numetriclabz.numandroidcharts:numandroidcharts:1.0.2'
+    compile 'com.numetriclabz.numandroidcharts:numandroidcharts:1.0.4'
+
+
 }

@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 //класс по созданию диалогового окна
 public class CustomDialogFragment extends DialogFragment implements
         DialogInterface.OnClickListener {
@@ -36,6 +38,7 @@ public class CustomDialogFragment extends DialogFragment implements
     public void onClick(DialogInterface dialog, int which) {
         EditText loginBox=(EditText)form.findViewById(R.id.email);
         final String email = loginBox.getText().toString();
+        if(email.contains("@")){
         new Thread(new Runnable() {
 
             @Override
@@ -56,12 +59,19 @@ public class CustomDialogFragment extends DialogFragment implements
 
                     sender.sendMail("Caloriya",allDannie ,
                             "stsndrd@gmail.com", email);
+
                 } catch (Exception e) {
                     Log.e("SendMail", e.getMessage(), e);
                 }
             }
 
         }).start();
+            Toast toast = Toast.makeText(getActivity(),
+                    "email отправлен", Toast.LENGTH_SHORT);
+            toast.show();}
+        else{ Toast toast = Toast.makeText(getActivity(),
+                "email введён не верно", Toast.LENGTH_SHORT);
+        toast.show();}
 
 
       /*  TextView loginText = (TextView)getActivity().findViewById(R.id.loginText);
